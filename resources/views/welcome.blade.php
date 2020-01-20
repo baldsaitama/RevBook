@@ -34,7 +34,7 @@
             </div>
         </form>
     </div>
-    <div class="container">
+    <div class="container" id="post-unique">
         @foreach($publishedpost as $post)
             <ul class="text-center ">
                 <div style="color: red; font-family: 'Calibri Light'; font-size: 25px"><a href="{{route('profile',$post->user->id)}}" class="card-link">{{$post->user->name}}</a></div>
@@ -50,7 +50,7 @@
                         <div style="text-align: left; margin-left: 6.25pc; position: relative;">
                             @if (auth()->user())
                                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <input type="hidden" name="likeable_id" value="{{$post->id}}">
                                 <input type="hidden" name="likeable_type" value="App\post">
                                 @if($post->likes->contains('user_id',auth()->user()->id))
                                     <button class="btn btn-primary ">Unlike</button>
@@ -82,14 +82,16 @@
                     <div class="form-group" style="width: 880px; margin:-18px auto 0px 138px;">
                     <label for="exampleFormControlTextarea1">Comment</label>
                     <div style="width: 800px;position: relative">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="commentsection" style="border: 2px solid #afafaf;background-color: transparent;border-top-right-radius: 0;border-bottom-right-radius: 0;" ></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="comment_section" style="border: 2px solid #afafaf;background-color: transparent;border-top-right-radius: 0;border-bottom-right-radius: 0;" ></textarea>
                         <button type="submit" class="btn btn-primary" style="position: absolute;top: 0; right: -71px; height: 60px; border-top-left-radius: 0; border-bottom-left-radius: 0;" >Submit</button>
                     </div>
                     </div>
                 </form>
             @endauth<hr>
         @endforeach
+        {{$publishedpost->links()}}
     </div>
 </body>
 @endsection
+
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Eloquent\CommentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rules\In;
@@ -9,6 +10,11 @@ use App\comment;
 
 class CommentController extends Controller
 {
+    function __construct(CommentRepository $comment)
+    {
+        $this->comment = $comment;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +43,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $push = new comment;
-        $push->comment_section = Input::get('commentsection');
-        $push->user_id = Input::get('user_id');
-        $push->post_id = Input::get('post_id');
-        $push->save();
+
+       $this->comment->store($request);
+
         return back();
 
     }

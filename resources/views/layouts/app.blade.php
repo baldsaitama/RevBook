@@ -27,6 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
+{{--                    Ghar Bhada--}}
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <form action="{{route("search")}}" method="get" role="search">
@@ -96,6 +97,7 @@
         </nav>
 
         <main class="py-4">
+
             @yield('content')
         </main>
     </div>

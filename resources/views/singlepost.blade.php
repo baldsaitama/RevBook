@@ -26,7 +26,7 @@
         <ul class="text-center ">
             <div style="color: red; font-family: 'Calibri Light'; font-size: 25px"><a href="{{route('profile',$post->user->id)}}" class="card-link">{{$post->user->name}}</a></div>
             @if($post->image)
-                <a href="{{route('singlepost', $post->id)}}"> <img class="pt-2" src="{{asset($post->image)}}" alt="" height="740" width="870"></a>
+                <<img class="pt-2" src="{{asset($post->image)}}" alt="" height="740" width="870">
             @endif
             <li style="background-color: lightblue; width: 870px; margin: 0 auto; " class="list-group-item mt-2 mb-1 ">{{$post->Post}}</li>
             <span class="like-btn is-active"></span>
@@ -37,7 +37,7 @@
                 <div style="text-align: left; margin-left: 6.25pc; position: relative;">
                     @if (auth()->user())
                         <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-                        <input type="hidden" name="post_id" value="{{$post->id}}">
+                        <input type="hidden" name="likeable_id" value="{{$post->id}}">
                         <input type="hidden" name="likeable_type" value="App\post">
                         @if($post->likes->contains('user_id',auth()->user()->id))
                             <button class="btn btn-primary ">Unlike</button>

@@ -20,7 +20,7 @@
         <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Create Post</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="createpost"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Post"></textarea>
         </div>
         <!-- Material unchecked -->
         <div class="form-check">

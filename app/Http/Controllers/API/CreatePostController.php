@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Repositories\Eloquent\CreatePostRepository;
+use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-
+use App\Http\Controllers\Controller;
 use App\post;
 use App\User;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
-
-
-class CreatePostController extends Controller
+class CreatePostController extends ApiController
 {
-    function __construct(CreatePostRepository $createpost)
-    {
-        $this->createpost = $createpost;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +18,7 @@ class CreatePostController extends Controller
      */
     public function index()
     {
-        return view('createpost');
+        //
     }
 
     /**
@@ -41,45 +34,34 @@ class CreatePostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        request()->validate([
-        'image' => 'file|image|max:5000'
-    ]);
-        $this->createpost->store($request);
-
-
-                return redirect('/');
-
-
-}
+        //
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $publishedpost = post::where('is_published', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
+        $APIpost = post::all();
+//            ->orderBy('created_at', 'desc');
 
-        $usernames = User::all()
-            ->pluck('name')
-            ->toArray();
-
-        return view('welcome', compact('usernames', 'publishedpost'));
+        return $this->respondWithData(fractal()
+        ->collection($APIpost)
+        ->transformWith(new PostTransformer()));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -90,8 +72,8 @@ class CreatePostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -102,17 +84,11 @@ class CreatePostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-    public function validaterequest(){
-
-    }
-
-
-
 }

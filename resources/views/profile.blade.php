@@ -3,8 +3,9 @@
 <h1>{{implode($name)}}</h1>
 
     <h3>Published Post</h3>
+
     @foreach($publishedpost as $publish)
-        <img src="{{asset($publish->image)}}">
+        <a href="{{route('singlepost', $publish->id)}}"><img src="{{asset($publish->image)}}"></a>
         <p>{{$publish->Post}}</p>
     @endforeach
 

@@ -67,7 +67,7 @@
                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 <div class="form-group" style="width: 880px; margin:-18px auto 0px 138px;">
-                    <label for="exampleFormControlTextarea1">Comment</label>
+                    <label for="exampleFormControlTextarea1">Comment: </label>
                     <div style="width: 800px;position: relative">
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="commentsection" style="border: 2px solid #afafaf;background-color: transparent;border-top-right-radius: 0;border-bottom-right-radius: 0;" ></textarea>
                         <button type="submit" class="btn btn-primary" style="position: absolute;top: 0; right: -71px; height: 60px; border-top-left-radius: 0; border-bottom-left-radius: 0;" >Submit</button>

@@ -34,7 +34,7 @@
             <label class="form-check-label" for="materialChecked">Save as Draft</label>
         </div>
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-dark">
                 {{ __('Publish Post') }}
             </button>
         </div>
